@@ -1,0 +1,65 @@
+<div class="container">
+
+    <div>
+        <h1 style="text-align: center;">ORGANIZE YOUR LIFE WITH US</h1>
+    </div>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">ADD</button>
+    <h2>PENDING TASKS</h2>
+    <div *ngFor="let task of taskArray">
+
+            <ul class="list-group" *ngIf="task.status=='pending'">
+
+                <li class="list-group-item list-group-item-info">
+                    <span><label for=""><h6>Name:</h6> </label>{{task.name}}</span><br>
+                    <span><label for=""><h6>Description:</h6> </label>{{task.description}}</span><br>
+                    <span><label for=""><h6>Date:</h6> </label>{{task.date}}</span><br>
+                    <button style="margin: 1mm;" class="btn btn-success" (click)="completeTask(task)">Completed</button> <button class="btn btn-danger" (click)="deleteTask(task)">DELETE</button>
+
+
+                </li>
+
+            </ul>
+
+    </div>
+
+    <h2>COMPLETED TASKS</h2>
+    <div *ngFor="let task of taskArray">
+        <ul class="list-group" *ngIf="task.status=='completed'">
+
+            <li class="list-group-item list-group-item-dark">
+                <span><label for=""><h6>Name:</h6> </label>{{task.name}}</span><br>
+                <span><label for=""><h6>Description:</h6> </label>{{task.description}}</span><br>
+                <span><label for=""><h6>Date:</h6> </label>{{task.date}}</span><br>
+                <button class="btn btn-danger " (click)="deleteTask(task)">DELETE</button>
+
+
+            </li>
+
+        </ul>
+
+    </div>
+</div>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+      
+    
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+             <input type="text" name="taskname" [(ngModel)]="task" class="form-control" placeholder="Name of Task">
+             <input type="text" name="description" [(ngModel)]="description" class="form-control" placeholder="Description of task">
+            
+            </div>
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" (click)="addTask()"  data-bs-dismiss="modal">Add Task</button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+            </div>
+      
+          </div>
+        </div>
+      </div>
